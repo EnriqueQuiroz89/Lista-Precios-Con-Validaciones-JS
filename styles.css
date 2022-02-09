@@ -2,6 +2,10 @@
 
 *{box-sizing:  border-box;}
 
+h2 {
+    text-align: center;
+}
+
 .progress-bar{
     width: 100%;
     position: relative;
@@ -107,6 +111,7 @@
     background: white;
     width: 100%;
     color: white ;
+    max-width: 600px;
 }
 
 .table thead {

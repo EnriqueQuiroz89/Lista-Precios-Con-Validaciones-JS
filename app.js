@@ -155,7 +155,7 @@ function guardarOrCancelar() {  /// Esta podria ir dentro de la funcion Guardar
             if (checkInputs() === false) {
                 console.log('No hubo errores, envia los datos');
                 guardar();
-              //  resetFormulario();
+                //  resetFormulario();
             } else {
                 console.log('Hubo errores, no envies los datos');
             }
@@ -347,6 +347,7 @@ function eliminar(id) {
 function editar(id, articulo, cantidad, nota, imagen) {
     //Limpia la galeria de la imagen por default
     limpiaGaleria()
+
     // Escribe en los campos los valores del renglon seleccionado
     document.getElementById('articulo').value = articulo;
     document.getElementById('cantidad').value = cantidad;
