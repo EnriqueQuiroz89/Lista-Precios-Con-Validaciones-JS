@@ -25,7 +25,7 @@
 
 <body>
 
-   
+
 
     <div class="container">
 
@@ -56,14 +56,18 @@
 
             <input type="text" id="imagen" placeholder="URL Imagen" style="display:none">
 
-            <!--Campo oculto y link para guardar imagen-->
-            <input type="file" id="fileElem" multiple accept="image/*" style="display:none"
-                onchange="handleFiles(this.files)">
+            <!--Campo oculto tipo FILE para elegir la imagen-->
+            <!--MULTIPLE  <input type="file" id="fileElem" multiple accept="image/*" style="display:none"
+                onchange="handleFiles(this.files)">  -->
+            <input type="file" id="fileElem" accept="image/*" style="display:none" onchange="handleFiles(this.files)">
+            <!--Link para detonar la el cuadro de seleccion del input tipo file-->
             <a href="#" id="fileSelect">Elige una imagen</a>
             <!--Aqui se muestra el Progreso de la carga-->
             <div class="progress-bar" id="progress-bar">
-                <div class="progress" id="progress"><div id="porcentaje">0%</div></div>
-            </div>            
+                <div class="progress" id="progress">
+                    <div id="porcentaje">0%</div>
+                </div>
+            </div>
 
             <!--Aqui se mostrara un icono de la imagen subida-->
             <div id="gallery"></div>
@@ -77,7 +81,7 @@
         </form>
 
         <h2>Tabla de Datos</h2>
-        <table class="table" >
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Articulo</th>

@@ -30,43 +30,14 @@ firebase.initializeApp({
 
 var db = firebase.firestore();
 
-/**SELECCION DE IMAGEN*/
-/** Pasos
- *  1. Al hacer Click en el Link "Elige imagen" invoca funcion(e) anonima
- *  2. La funcion anonima evalua si existe la variable "fileElem" 
- *  3. fileElem es la invocacion  de un input de tipo archivo que esta oculto
- *  4. Al existir fileElem la funcion simula un Click en el campo y despliega 
- *     la ventana para elegir.   
- */
-fileSelect.addEventListener("click", function (e) {
-    if (fileElem) {
-        fileElem.click();
-    }
-    e.preventDefault(); // prevent navigation to "#"
-}, false);
 
-//Constantes del formulario
+//Controla la accion del boton enviar
 const form = document.getElementById('form');
 // controlar Funcion Submit del formulario
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-
-
     guardarOrCancelar();
-    /** if (checkInputs() === false) {
-         console.log('No hubo errores, envia los datos');
-         guardar();
-     } else {
-         console.log('Hubo errores, no envies los datos');
-     } */
-    //  checkInputs();
-
 });
-
-miArticulo.addEventListener("click", function (e) {
-    console.log("Elija el articulo");
-}, false);
-
 
 // Carga Imagen por default
 setImagenPorDefault(urlImagenDefault);
@@ -120,8 +91,6 @@ function checkInputs() {
 
 }
 
-
-
 function setErrorFor(input, message) {
     const formControl = input.parentElement;  // .form-control
     const small = formControl.querySelector('small');
@@ -137,7 +106,6 @@ function setSuccessFor(input) {
     // Agrega la clase error
     formControl.className = 'form-control success';
 }
-
 
 // Cambia la funcion del Boton Guardar
 function guardarOrCancelar() {  /// Esta podria ir dentro de la funcion Guardar
@@ -167,6 +135,37 @@ function guardarOrCancelar() {  /// Esta podria ir dentro de la funcion Guardar
             break;
     }
 }
+
+// Util para obtener el foco
+miArticulo.addEventListener("click", function (e) {
+    console.log("Elija el articulo");
+}, false);
+
+
+
+/**Como se precarga la imagen que va a Cloudinary*/
+/**SELECCION DE IMAGEN*/
+/** Pasos
+ *  1. Al hacer Click en el Link "Elige imagen" invoca funcion(e) anonima
+ *  2. La funcion anonima evalua si existe la variable "fileElem" 
+ *  3. fileElem es la invocacion  de un input de tipo archivo que esta oculto
+ *  4. Al existir fileElem la funcion simula un Click en el campo y despliega 
+ *     la ventana para elegir.   
+ */
+ fileSelect.addEventListener("click", function (e) {
+    if (fileElem) {
+        fileElem.click();
+    }
+    e.preventDefault(); // prevent navigation to "#"
+}, false);
+
+/**Se invoca desde el campo tipo FILE al percibir un cambio*/
+// *********** Handle selected files ******************** //
+var handleFiles = function (files) {
+    for (var i = 0; i < files.length; i++) {
+        uploadFile(files[i]); // call the function to upload the file
+    }
+};
 
 // *********** Upload file to Cloudinary ******************** //
 function uploadFile(file) {
@@ -244,12 +243,7 @@ function uploadFile(file) {
     xhr.send(fd);
 } // Fin de upload FILE
 
-// *********** Handle selected files ******************** //
-var handleFiles = function (files) {
-    for (var i = 0; i < files.length; i++) {
-        uploadFile(files[i]); // call the function to upload the file
-    }
-};
+
 
 // Agregar documentos
 function guardar() {
